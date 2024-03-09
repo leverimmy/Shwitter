@@ -1,0 +1,76 @@
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
+
+Shwitter/*~
+Shwitter/*.autosave
+Shwitter/*.a
+Shwitter/*.core
+Shwitter/*.moc
+Shwitter/*.o
+Shwitter/*.obj
+Shwitter/*.orig
+Shwitter/*.rej
+Shwitter/*.so
+Shwitter/*.so.*
+Shwitter/*_pch.h.cpp
+Shwitter/*_resource.rc
+Shwitter/*.qm
+Shwitter/.#*
+Shwitter/*.*#
+Shwitter/core
+Shwitter/!core/
+Shwitter/tags
+Shwitter/.DS_Store
+Shwitter/.directory
+Shwitter/*.debug
+Shwitter/Makefile*
+Shwitter/*.prl
+Shwitter/*.app
+Shwitter/moc_*.cpp
+Shwitter/ui_*.h
+Shwitter/qrc_*.cpp
+Shwitter/Thumbs.db
+Shwitter/*.res
+Shwitter/*.rc
+Shwitter/.qmake.cache
+Shwitter/.qmake.stash
+
+# qtcreator generated files
+Shwitter/*.pro.user*
+Shwitter/CMakeLists.txt.user*
+
+# xemacs temporary files
+Shwitter/*.flc
+
+# Vim temporary files
+Shwitter/.*.swp
+
+# Visual Studio generated files
+Shwitter/*.ib_pdb_index
+Shwitter/*.idb
+Shwitter/*.ilk
+Shwitter/*.pdb
+Shwitter/*.sln
+Shwitter/*.suo
+Shwitter/*.vcproj
+Shwitter/*vcproj.*.*.user
+Shwitter/*.ncb
+Shwitter/*.sdf
+Shwitter/*.opensdf
+Shwitter/*.vcxproj
+Shwitter/*vcxproj.*
+
+# MinGW generated files
+Shwitter/*.Debug
+Shwitter/*.Release
+
+# Python byte code
+Shwitter/*.pyc
+
+# Binaries
+# --------
+Shwitter/*.dll
+Shwitter/*.exe
+
+# Builds
+build-*/
