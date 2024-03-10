@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
@@ -23,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="loginPage">
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -87,7 +90,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="titleLabel">
+    <widget class="QLabel" name="loginTitleLabel">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -105,14 +108,14 @@
     <widget class="QPushButton" name="backButton_1">
      <property name="geometry">
       <rect>
-       <x>620</x>
-       <y>530</y>
-       <width>93</width>
-       <height>28</height>
+       <x>670</x>
+       <y>540</y>
+       <width>121</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
-      <string>返回主界面</string>
+      <string>返回登录界面</string>
      </property>
     </widget>
     <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -120,7 +123,7 @@
       <rect>
        <x>200</x>
        <y>160</y>
-       <width>331</width>
+       <width>499</width>
        <height>311</height>
       </rect>
      </property>
@@ -134,17 +137,38 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="registerPasswordLabel">
-          <property name="text">
-           <string>密码</string>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="registerUsernameLineEdit">
+          <property name="inputMethodHints">
+           <set>Qt::ImhNone</set>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="registerUsernameLineEdit"/>
+        <item row="4" column="0">
+         <widget class="QLabel" name="registerConfirmPasswordLabel">
+          <property name="text">
+           <string>重复新密码</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="registerConfirmPasswordLineEdit">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1">
+         <widget class="QLabel" name="registerUsernameDescription">
+          <property name="text">
+           <string>*用户名为长度为 1~20 的由字母、数字和下划线组成的字符串</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
          <widget class="QLineEdit" name="registerPasswordLineEdit">
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
@@ -152,19 +176,16 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="registerConfirmPasswordLabel">
+         <widget class="QLabel" name="registerPasswordLabel">
           <property name="text">
-           <string>重复新密码</string>
+           <string>密码</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="registerConfirmPasswordLineEdit">
-          <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
-          </property>
-          <property name="clearButtonEnabled">
-           <bool>false</bool>
+        <item row="3" column="1">
+         <widget class="QLabel" name="registerPasswordDescription">
+          <property name="text">
+           <string>*密码为长度 8~20 的由字母、数字和下划线组成的字符串</string>
           </property>
          </widget>
         </item>
@@ -184,14 +205,27 @@
     <widget class="QPushButton" name="logoutButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>93</width>
-       <height>28</height>
+       <x>670</x>
+       <y>540</y>
+       <width>121</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
       <string>退出登录</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="followButton">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>480</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>我的关注</string>
      </property>
     </widget>
    </widget>
@@ -199,15 +233,80 @@
     <widget class="QPushButton" name="backButton_2">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>450</y>
-       <width>93</width>
-       <height>28</height>
+       <x>670</x>
+       <y>540</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>返回登录界面</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="followPage">
+    <widget class="QPushButton" name="backButton_3">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>540</y>
+       <width>121</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
       <string>返回主界面</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>110</y>
+       <width>711</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="newFollowTitleLabel">
+        <property name="text">
+         <string>新增关注</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="subscribeLabel">
+          <property name="text">
+           <string>选择用户</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="subscribeLineEdit"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="subscribeButton">
+          <property name="text">
+           <string>关注</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="followTitleLabel">
+        <property name="text">
+         <string>已有关注</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listWidget"/>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

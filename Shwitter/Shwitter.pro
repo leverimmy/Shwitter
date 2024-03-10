@@ -13,12 +13,14 @@ SOURCES += \
     login.cpp \
     main.cpp \
     register.cpp \
+    subscription.cpp \
     utils.cpp \
     widget.cpp
 
 HEADERS += \
     login.h \
     register.h \
+    subscription.h \
     utils.h \
     widget.h
 
