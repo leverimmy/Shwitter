@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+#include "customlistitemwidget.h"
 #include "login.h"
 #include "register.h"
 #include "utils.h"
@@ -31,40 +32,6 @@ Widget::Widget(QWidget *parent)
 Widget::~Widget() {
     delete ui;
     db.close();
-}
-
-CustomListItemWidget::CustomListItemWidget(const QString& text, QListWidget* listWidget, Widget* parent)
-    : m_parent(parent) {
-    layout = new QHBoxLayout(this);
-    label = new QLabel(text, this);
-    button = new QPushButton("删除", this);
-
-    layout->addWidget(label);
-    layout->addWidget(button);
-    layout->setSpacing(0); // 删除两行之间的空白
-
-    setLayout(layout);
-
-    connect(button, &QPushButton::clicked, this, &CustomListItemWidget::handleButtonClicked);
-
-    button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-    // QListWidgetItem* listItem = new QListWidgetItem(listWidget);
-    // listWidget->addItem(listItem);
-    // listWidget->setItemWidget(listItem, this);
-}
-
-void CustomListItemWidget::handleButtonClicked() {
-    QMessageBox msgBox;
-    msgBox.setWindowTitle("警告");
-    msgBox.setText(QString("取消关注 %1？").arg(this->label->text()));
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    int result = msgBox.exec();
-    if (result == QMessageBox::Yes) {
-        remove_or_uuid(m_parent->global_user_uuid, get_uuid_by_username(this->label->text()));
-        m_parent->drawSubscriptionPage();
-    }
 }
 
 
@@ -214,8 +181,8 @@ void Widget::on_confirmButton_clicked() {
 // 重要，处理退出账号
 void Widget::on_logoutButton_clicked() {
     ui->stackedWidget->setCurrentIndex(0);
-    // 还需要处理登录状态，比如保存数据
-
+    // 还需要清空登录状态，虽然看起来是不必要的
+    global_user_uuid = "";
 }
 
 
@@ -273,11 +240,10 @@ void Widget::drawSubscriptionPage() {
     // 先清空原来的展示关注列表
     ui->listWidget->clear();
 
-
     QStringList followingUUIDList = get_following_uuid(global_user_uuid);
     for (const QString& item : followingUUIDList) {
         QListWidgetItem* listItem = new QListWidgetItem(ui->listWidget);
-        CustomListItemWidget* customWidget = new CustomListItemWidget(get_username_by_uuid(item), ui->listWidget, this);
+        CustomListItemWidget* customWidget = new CustomListItemWidget(get_username_by_uuid(item), this);
         listItem->setSizeHint(customWidget->sizeHint());
         ui->listWidget->setItemWidget(listItem, customWidget);
     }
@@ -285,3 +251,12 @@ void Widget::drawSubscriptionPage() {
     // 再展示新的关注列表
     ui->listWidget->show();
 }
+
+void Widget::on_postButton_clicked() {
+    // 点击加号之后发表动态
+
+
+
+
+}
+

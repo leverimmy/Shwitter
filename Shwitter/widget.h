@@ -12,7 +12,6 @@
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Widget;
-class CustomListItemWidget;
 }
 QT_END_NAMESPACE
 
@@ -36,25 +35,12 @@ private slots:
     void on_followButton_clicked();
     void on_subscribeButton_clicked();
 
+    void on_postButton_clicked();
+
 public:
     Ui::Widget *ui;
     QString global_user_uuid;
     QSqlDatabase db;
-};
-
-class CustomListItemWidget : public QWidget {
-    Q_OBJECT
-public:
-    explicit CustomListItemWidget(const QString& text, QListWidget* listWidget, Widget* parent);
-
-private slots:
-    void handleButtonClicked();
-
-private:
-    QHBoxLayout* layout;
-    QLabel* label;
-    QPushButton* button;
-    Widget* m_parent;
 };
 
 #endif // WIDGET_H
