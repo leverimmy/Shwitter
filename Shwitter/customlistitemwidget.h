@@ -3,9 +3,13 @@
 
 #include "widget.h"
 
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class Widget;
 class CustomListItemWidget;
 }
 QT_END_NAMESPACE

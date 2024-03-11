@@ -11,8 +11,12 @@ CONFIG += c++17
 
 SOURCES += \
     customlistitemwidget.cpp \
+    custompostitemwidget.cpp \
     login.cpp \
     main.cpp \
+    post.cpp \
+    postelement.cpp \
+    postwindow.cpp \
     register.cpp \
     subscription.cpp \
     utils.cpp \
@@ -20,7 +24,11 @@ SOURCES += \
 
 HEADERS += \
     customlistitemwidget.h \
+    custompostitemwidget.h \
     login.h \
+    post.h \
+    postelement.h \
+    postwindow.h \
     register.h \
     subscription.h \
     utils.h \

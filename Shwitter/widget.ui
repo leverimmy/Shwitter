@@ -228,16 +228,6 @@
       <string>我的关注</string>
      </property>
     </widget>
-    <widget class="QListView" name="listView">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>631</width>
-       <height>561</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="postButton">
      <property name="geometry">
       <rect>
@@ -249,6 +239,29 @@
      </property>
      <property name="text">
       <string>发表动态</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="postWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>631</width>
+       <height>561</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="refreshButton">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>80</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>刷新</string>
      </property>
     </widget>
    </widget>

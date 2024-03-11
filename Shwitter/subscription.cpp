@@ -89,4 +89,3 @@ QStringList get_following_uuid(const QString& follower_uuid) {
     }
     return uuidList;
 }
-

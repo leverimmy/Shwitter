@@ -1,7 +1,10 @@
 #include "widget.h"
+#include "customlistitemwidget.h"
+#include "custompostitemwidget.h"
+#include "postelement.h"
+#include "postwindow.h"
 #include "ui_widget.h"
 
-#include "customlistitemwidget.h"
 #include "login.h"
 #include "register.h"
 #include "utils.h"
@@ -27,6 +30,7 @@ Widget::Widget(QWidget *parent)
     QSqlQuery query;
     query.exec("CREATE TABLE IF NOT EXISTS users (uuid UUID PRIMARY KEY, username VARCHAR(20), password VARCHAR(20))");
     query.exec("CREATE TABLE IF NOT EXISTS subscription (uuid UUID PRIMARY KEY, uuid_list JSONB)");
+    query.exec("CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME, poster_uuid UUID, post_content TEXT)");
 }
 
 Widget::~Widget() {
@@ -65,6 +69,7 @@ void Widget::on_loginButton_clicked() {
         // 如果登录成功，记录下当前用户 uuid，并且转到主页面
         global_user_uuid = get_uuid_by_username(username);
         ui->stackedWidget->setCurrentIndex(2);
+        drawPostPage();
     } else {
         // 如果登录失败，弹出警告框，重新填写用户名和密码
         QMessageBox msgBox;
@@ -188,6 +193,7 @@ void Widget::on_logoutButton_clicked() {
 
 void Widget::on_backButton_3_clicked() {
     ui->stackedWidget->setCurrentIndex(2);
+    drawPostPage();
 }
 
 
@@ -235,6 +241,7 @@ void Widget::on_subscribeButton_clicked() {
     }
 }
 
+
 void Widget::drawSubscriptionPage() {
 
     // 先清空原来的展示关注列表
@@ -252,11 +259,33 @@ void Widget::drawSubscriptionPage() {
     ui->listWidget->show();
 }
 
+
 void Widget::on_postButton_clicked() {
     // 点击加号之后发表动态
+    NewWindow newWindow(nullptr, this);
+    newWindow.exec(); // 显示新窗口
+}
 
 
+void Widget::drawPostPage() {
+    // 先清空原来的展示 post 列表
+    ui->postWidget->clear();
+    qDebug() << "Cleared.";
+
+    QList<PostElement> followingPostList = get_following_posts(global_user_uuid);
+    for (const PostElement& item : followingPostList) {
+        QListWidgetItem* listItem = new QListWidgetItem(ui->postWidget);
+        CustomPostItemWidget* customWidget = new CustomPostItemWidget(item, this);
+        listItem->setSizeHint(customWidget->sizeHint());
+        ui->postWidget->setItemWidget(listItem, customWidget);
+    }
+
+    // 再展示新的 post 列表
+    ui->postWidget->show();
+}
 
 
+void Widget::on_refreshButton_clicked() {
+    drawPostPage();
 }
 
