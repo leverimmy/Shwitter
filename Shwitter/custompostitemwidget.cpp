@@ -14,6 +14,10 @@ CustomPostItemWidget::CustomPostItemWidget(const PostElement& post, Widget* pare
     layout->addWidget(timeLabel);
     layout->addWidget(postLabel);
     layout->addWidget(button);
+    if (post.poster_uuid != parent->global_user_uuid) {
+        qDebug() << "Removed button.";
+        button->setVisible(false);
+    }
     layout->setSpacing(0); // 删除两行之间的空白
 
     setLayout(layout);
