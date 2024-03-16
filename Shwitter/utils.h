@@ -1,6 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include "postelement.h"
+
 #include <QString>
 #include <QtSql>
 
@@ -21,5 +23,7 @@ QStringList convertJsonDoqumentToQStringList(const QJsonDocument& jsonDocument);
 void insert_or_uuid(const QString& follower, const QString& followee);
 
 QString get_username_by_uuid(const QString& uuid);
+
+bool compareTimestamp(const PostElement& a, const PostElement& b);
 
 #endif // UTILS_H

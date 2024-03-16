@@ -161,30 +161,30 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 ```
 - Shwitter
-  - Shwitter.pro
-  - Headers
-    - customsubscriptionitemwidget.h
-    - custompostitemwidget.h
-    - login.h
-    - post.h
-    - postelement.h
-    - postwindow.h
-    - subscription.h
-    - utils.h
-    - widget.h
-  - Sources
-    - customsubscriptionitemwidget.cpp
-    - custompostitemwidget.cpp
-    - login.cpp
-    - main.cpp
-    - post.cpp
-    - postelement.cpp
-    - postwindow.cpp
-    - subscription.cpp
-    - utils.cpp
-    - widget.cpp
-  - Forms
-    - widget.ui
+	- Shwitter.pro
+	- Headers
+		- customsubscriptionitemwidget.h
+        - custompostitemwidget.h
+        - login.h
+        - post.h
+        - postelement.h
+        - postwindow.h
+        - subscription.h
+        - utils.h
+        - widget.h
+    - Sources
+        - customsubscriptionitemwidget.cpp
+        - custompostitemwidget.cpp
+        - login.cpp
+        - main.cpp
+        - post.cpp
+        - postelement.cpp
+        - postwindow.cpp
+        - subscription.cpp
+        - utils.cpp
+        - widget.cpp
+    - Forms
+        - widget.ui
 ```
 
 - 类
@@ -262,7 +262,7 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 ## 具体实现
 
-具体实现见代码文件中的注释。
+具体实现见代码文件及其中的注释。
 
 ## 功能测试
 

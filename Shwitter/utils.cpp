@@ -96,3 +96,7 @@ QString get_username_by_uuid(const QString& uuid) {
         return 0;
     }
 }
+
+bool compareTimestamp(const PostElement& a, const PostElement& b) {
+    return a.get_timestamp() > b.get_timestamp(); // 根据时间戳从大到小排序
+}

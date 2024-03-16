@@ -275,6 +275,7 @@ void Widget::drawPostPage() {
 
     // 获取当前用户的关注的所有用户的动态组成的列表
     QList<PostElement> followingPostList = get_following_posts(global_user_uuid);
+    std::sort(followingPostList.begin(), followingPostList.end(), compareTimestamp);
     // 对每条动态，添加为组件中的一项
     for (const PostElement& item : followingPostList) {
         QListWidgetItem* listItem = new QListWidgetItem(ui->postWidget);

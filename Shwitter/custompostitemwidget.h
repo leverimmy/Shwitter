@@ -9,6 +9,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QScrollArea>
+#include <QScrollBar>
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
