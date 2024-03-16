@@ -13,7 +13,7 @@
 > - 支持用户进行登录、注册、发布和删除内容
 > - 支持不同用户之间相互关注，关注对方后可看对方发布内容
 
-我实现了一个名为 *Shwitter* 的应用程序，满足以上要求，支持多用户同时在线，且能在本地利用数据库进行持久存储。
+本项目实现了一个名为 *Shwitter* 的应用程序，满足以上要求，支持多用户同时在线，且能在本地利用数据库进行持久存储。
 
 ## 构建环境
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 登录时在 `user` 表中查找是否有 `username` 和 `password` 均匹配的项。如果有，则登陆成功，将该用户的唯一标识符并存入 `global_user_uuid` 中，然后转入发表动态页面；否则，登录失败，弹出提示框，提示用户重新登录。
 
-为了保证安全，即使是在数据库泄露的情况下也无法获得用户名对应的明文密码，我使用了 SHA256 的加密方式。数据库中仅存储密码经过 SHA256 后的值。在用户登录的时候也仅仅将用户输入的密码进行 SHA256 后再与数据库中的内容进行比对。
+为了保证安全，即使是在数据库泄露的情况下也无法获得用户名对应的明文密码，本项目使用了 SHA256 的加密方式。数据库中仅存储密码经过 SHA256 后的值。在用户登录的时候也仅仅将用户输入的密码进行 SHA256 后再与数据库中的内容进行比对。
 
 #### 注册
 
@@ -133,29 +133,30 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 ```
 - Shwitter
-	- Header Files
-		- customsubscriptionitemwidget.h
-		- custompostitemwidget.h
-		- login.h
-		- post.h
-		- postelement.h
-		- postwindow.h
-		- subscription.h
-		- utils.h
-		- widget.h
-	- Source Files
-		- customsubscriptionitemwidget.cpp
-		- custompostitemwidget.cpp
-		- login.cpp
-		- main.cpp
-		- post.cpp
-		- postelement.cpp
-		- postwindow.cpp
-		- subscription.cpp
-		- utils.cpp
-		- widget.cpp
-	- Shwitter.pro
-	- widget.ui
+  - Shwitter.pro
+  - Headers
+    - customsubscriptionitemwidget.h
+    - custompostitemwidget.h
+    - login.h
+    - post.h
+    - postelement.h
+    - postwindow.h
+    - subscription.h
+    - utils.h
+    - widget.h
+  - Sources
+    - customsubscriptionitemwidget.cpp
+    - custompostitemwidget.cpp
+    - login.cpp
+    - main.cpp
+    - post.cpp
+    - postelement.cpp
+    - postwindow.cpp
+    - subscription.cpp
+    - utils.cpp
+    - widget.cpp
+  - Forms
+    - widget.ui
 ```
 
 - 类
@@ -221,18 +222,19 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 - `main.cpp`
 
-- `widget.ui`
+- 界面文件
 
-  界面文件，描述了本项目的应用界面 UI。
+  - `widget.ui`
+
+    界面文件，描述了本项目的应用界面 UI。
 
 - `Shwitter.pro`
 
   项目文件，它描述了 Qt 项目的配置和组织结构。本项目使用 QMake (Qt Make) 作为构建系统，`Shwitter.pro` 中包含了构建项目所需的信息，如源文件列表、编译选项、依赖关系等。
 
-
 ## 具体实现
 
-
+具体实现见代码文件中的注释。
 
 ## 功能测试
 
@@ -240,7 +242,9 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 ## 参考文献
 
-1. [*Qt Documentation*](https://doc.qt.io/): https://doc.qt.io/
+1. [*Qt Documentation | Home*](https://doc.qt.io/): https://doc.qt.io/
+1. [*STL or Qt containers? - Stack Overflow*](https://stackoverflow.com/questions/1668259/stl-or-qt-containers): https://stackoverflow.com/questions/1668259/stl-or-qt-containers
+1. [*What does the Q_OBJECT macro do? Why do all Qt objects need this macro? - Stack Overflow*](https://stackoverflow.com/questions/1368584/what-does-the-q-object-macro-do-why-do-all-qt-objects-need-this-macro): https://stackoverflow.com/questions/1368584/what-does-the-q-object-macro-do-why-do-all-qt-objects-need-this-macro
 
 ## 作者信息
 

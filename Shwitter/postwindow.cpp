@@ -17,7 +17,7 @@ void NewWindow::handleSubmitButtonClicked() {
     QString text = textEdit->toPlainText(); // 获取文本输入框内容
     // 在这里进行存储文本输入框内容的操作
     qDebug() << "Input text:" << text;
-    insert_or_post(m_parent->global_user_uuid, text);
+    insert_or_post(m_parent->get_global_user_uuid(), text);
 
     close(); // 关闭新窗口
     m_parent->drawPostPage();

@@ -55,8 +55,8 @@ QString calculateSHA256(const QString &data) {
 
 bool is_username_exist(const QString& username) {
     QSqlQuery query;
-    query.prepare("SELECT * FROM users WHERE username = ?");
-    query.addBindValue(username);
+    query.prepare("SELECT * FROM users WHERE username = :username");
+    query.bindValue(":username", username);
     query.exec();
     return (bool)query.next();
 }
@@ -66,7 +66,6 @@ QJsonDocument convertQStringListToQJsonDocument(const QStringList& stringList) {
     for (const QString& str : stringList) {
         jsonArray.append(str);
     }
-
     return QJsonDocument(jsonArray);
 }
 

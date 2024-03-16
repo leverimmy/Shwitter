@@ -1,8 +1,8 @@
 #include "customsubscriptionitemwidget.h"
-#include "utils.h"
 #include "subscription.h"
+#include "utils.h"
 
-CustomSubscriptionItemWidget::CustomSubscriptionItemWidget(const QString& text, Widget* parent)
+CustomSubscriptionItemWidget::CustomSubscriptionItemWidget(const QString& text, Widget *parent)
     : m_parent(parent) {
     layout = new QHBoxLayout(this);
     label = new QLabel(text, this);
@@ -27,7 +27,7 @@ void CustomSubscriptionItemWidget::handleButtonClicked() {
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     int result = msgBox.exec();
     if (result == QMessageBox::Yes) {
-        remove_or_uuid(m_parent->global_user_uuid, get_uuid_by_username(this->label->text()));
+        remove_or_uuid(m_parent->get_global_user_uuid(), get_uuid_by_username(this->label->text()));
         m_parent->drawSubscriptionPage();
     }
 }

@@ -1,12 +1,12 @@
 #ifndef POST_H
 #define POST_H
 
-#include <QString>
-#include <QtSql>
-
 #include "postelement.h"
 #include "utils.h"
 #include "subscription.h"
+
+#include <QString>
+#include <QtSql>
 
 void insert_or_post(const QString& poster_uuid, const QString& text);
 

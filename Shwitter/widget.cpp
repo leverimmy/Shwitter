@@ -1,13 +1,12 @@
-#include "widget.h"
-#include "customsubscriptionitemwidget.h"
 #include "custompostitemwidget.h"
+#include "customsubscriptionitemwidget.h"
+#include "login.h"
 #include "postelement.h"
 #include "postwindow.h"
-#include "ui_widget.h"
-
-#include "login.h"
-#include "utils.h"
 #include "subscription.h"
+#include "ui_widget.h"
+#include "utils.h"
+#include "widget.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -288,3 +287,18 @@ void Widget::on_refreshButton_clicked() {
     drawPostPage();
 }
 
+Ui::Widget *Widget::get_ui() {
+    return ui;
+}
+
+QString Widget::get_global_user_uuid() {
+    return global_user_uuid;
+}
+
+QSqlDatabase Widget::get_db() {
+    return db;
+}
+
+void Widget::set_global_user_uuid(const QString& new_global_user_uuid) {
+    global_user_uuid = new_global_user_uuid;
+}
