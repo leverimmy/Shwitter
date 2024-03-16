@@ -13,6 +13,7 @@ CustomPostItemWidget::CustomPostItemWidget(const PostElement& post, Widget *pare
     usernameLabel->setFont(font1);
     timeLabel = new QLabel("发表于 " + post.get_timestamp().toString("yyyy-MM-dd hh:mm:ss"));
     button = new QPushButton("删除");
+    m_post_uuid = post.get_post_uuid();
 
     headerLayout->addWidget(usernameLabel);
     headerLayout->addStretch();
