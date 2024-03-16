@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 ```
 - Shwitter
 	- Shwitter.pro
+	- icon.jpg
 	- Headers
 		- customsubscriptionitemwidget.h
         - custompostitemwidget.h
@@ -251,6 +252,10 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
     - 由用户唯一标识符得到用户名
 
 - `main.cpp`
+
+- `icon.jpg`
+
+  应用图标。
 
 - 界面文件
 
