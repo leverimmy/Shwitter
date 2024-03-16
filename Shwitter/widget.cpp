@@ -13,6 +13,11 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget) {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
+    // 设置应用标题名称
+    setWindowTitle("Shwitter");
+    // 设置应用图标
+    setWindowIcon(QIcon(":icon.jpg"));
+
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("shwitter_database.db");
@@ -70,6 +75,7 @@ void Widget::on_loginButton_clicked() {
         // 如果登录成功，记录下当前用户 uuid，并且转到主页面
         global_user_uuid = get_uuid_by_username(username);
         ui->stackedWidget->setCurrentIndex(2);
+        ui->usernameLabel->setText("当前用户：\n" + username);
         drawPostPage();
     } else {
         // 如果登录失败，弹出警告框，重新填写用户名和密码

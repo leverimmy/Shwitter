@@ -59,7 +59,6 @@ CustomPostItemWidget::CustomPostItemWidget(const PostElement& post, Widget *pare
 }
 
 
-
 void CustomPostItemWidget::handleButtonClicked() {
     QMessageBox msgBox;
     msgBox.setWindowTitle("警告");

@@ -183,6 +183,8 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
         - subscription.cpp
         - utils.cpp
         - widget.cpp
+    - Resources
+    	- icon.qrc
     - Forms
         - widget.ui
 ```
@@ -256,6 +258,12 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
     界面文件，描述了本项目的应用界面 UI。
 
+- 资源
+
+  - `icon.qrc`
+
+    资源文件，存储了本项目的应用图标。
+
 - `Shwitter.pro`
 
   项目文件，它描述了 Qt 项目的配置和组织结构。本项目使用 QMake (Qt Make) 作为构建系统，`Shwitter.pro` 中包含了构建项目所需的信息，如源文件列表、编译选项、依赖关系等。
@@ -268,9 +276,63 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 ### 登录和注册功能
 
-### 发布和删除动态功能
+**用户名或密码错误**：
+
+![没有该账号](./assets/login-failed.png)
+
+**注册成功**：
+
+![注册成功](./assets/register-success.png)
+
+**注册多个账号后同时登录**：
+
+![注册多个账号](./assets/register-3-accounts.png)
 
 ### 关注其他用户功能
+
+**关注失败**：
+
+![关注失败](./assets/subscription-failed.png)
+
+**关注成功**：
+
+![关注成功](./assets/subscription-success.png)
+
+**取消关注**：
+
+![取消关注](./assets/unfollow-doing.png)
+
+**确认取消关注**：Clever_Jimmy 用户取消关注了 test_user_2，列表中也不再出现。
+
+![确认取消关注](./assets/unfollow-success.png)
+
+> 之后的过程中，展示的例子均为 Clever_Jimmy 关注了 Clever_Jimmy、test_user_1 和 test_user_2 三位用户的情况下的情形。
+
+### 发布和删除动态功能
+
+**展示所有动态**：此例中，用户 Clever_Jimmy 关注了 Clever_Jimmy、test_user_1 和 test_user_2 三位用户。
+
+![所有动态](./assets/posts-all.png)
+
+**删除自己发表的动态**：此例中，用户 Clever_Jimmy 依次删除用户自己的两条动态
+
+![删除自己发表的动态](./assets/posts-delete-doing.png)
+
+**确认删除自己发表的动态**：结果如下：这两条动态均被删除。
+
+![确认删除自己发表的动态](./assets/posts-delete-success.png)
+
+**同时在线时，当前用户关注的某用户发布新动态**：在 Clever_Jimmy 和 test_user_2 均在线的情况下，test_user_2 发表新动态。
+
+![同时在线时，自己关注的用户发布新动态](./assets/online-add-doing.png)
+
+**发表后，当前用户点击刷新按钮**：最上方会显示关注的用户最新发表的消息。此例中即为
+
+> added when
+>
+> Clever_Jimmy is still online
+
+![发表后，当前用户点击刷新按钮](./assets/online-add-success.png)
 
 ## 参考资料
 
