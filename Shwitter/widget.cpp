@@ -25,6 +25,7 @@ Widget::Widget(QWidget *parent)
         qDebug() << "Connected to database successfully.";
     }
 
+    // 建表
     QSqlQuery query;
     query.exec("CREATE TABLE IF NOT EXISTS users (uuid UUID PRIMARY KEY, username VARCHAR(20), password VARCHAR(20))");
     query.exec("CREATE TABLE IF NOT EXISTS subscription (uuid UUID PRIMARY KEY, uuid_list JSONB)");
@@ -33,6 +34,7 @@ Widget::Widget(QWidget *parent)
 
 Widget::~Widget() {
     delete ui;
+    // 记得关闭数据库连接
     db.close();
 }
 
@@ -59,10 +61,9 @@ void Widget::on_helpButton_clicked() {
 
 // 重要，处理登录
 void Widget::on_loginButton_clicked() {
+    // 从组件中获取用户名和密码
     QString username = ui->loginUsernameLineEdit->text();
     QString password = ui->loginPasswordLineEdit->text();
-
-    qDebug() << password;
 
     // 检查登录是否成功
     if (is_valid_username_and_password(username, password) == true) {
@@ -79,6 +80,7 @@ void Widget::on_loginButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
     }
+    // 清空已填信息
     ui->loginUsernameLineEdit->clear();
     ui->loginPasswordLineEdit->clear();
 }
@@ -86,13 +88,13 @@ void Widget::on_loginButton_clicked() {
 
 // 重要，处理注册
 void Widget::on_confirmButton_clicked() {
+    // 从组件中获取用户名、第一次填的密码、第二次填的密码
     QString username = ui->registerUsernameLineEdit->text();
     QString password1 = ui->registerPasswordLineEdit->text();
     QString password2 = ui->registerConfirmPasswordLineEdit->text();
 
     // 检查用户名是否合法
     if (is_valid_username(username) == false) {
-
         // 如果不合法，弹出警告框，重新填写用户名和密码
         QMessageBox msgBox;
         msgBox.setWindowTitle("警告");
@@ -101,6 +103,7 @@ void Widget::on_confirmButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
 
+        // 清空已填信息
         ui->registerUsernameLineEdit->clear();
         ui->registerPasswordLineEdit->clear();
         ui->registerConfirmPasswordLineEdit->clear();
@@ -109,7 +112,6 @@ void Widget::on_confirmButton_clicked() {
 
     // 检查密码是否合法
     if ((is_valid_password(password1) && is_valid_password(password2)) == false) {
-
         // 如果不合法，弹出警告框，重新填写密码
         QMessageBox msgBox;
         msgBox.setWindowTitle("警告");
@@ -118,6 +120,7 @@ void Widget::on_confirmButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
 
+        // 除了用户名外，清空已填信息
         ui->registerPasswordLineEdit->clear();
         ui->registerConfirmPasswordLineEdit->clear();
         return;
@@ -125,7 +128,6 @@ void Widget::on_confirmButton_clicked() {
 
     // 检查两次输入的密码是否相同
     if (password1 != password2) {
-
         // 弹出警告框，重新填写密码
         QMessageBox msgBox;
         msgBox.setWindowTitle("警告");
@@ -134,6 +136,7 @@ void Widget::on_confirmButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
 
+        // 除了用户名外，清空已填信息
         ui->registerPasswordLineEdit->clear();
         ui->registerConfirmPasswordLineEdit->clear();
         return;
@@ -141,7 +144,6 @@ void Widget::on_confirmButton_clicked() {
 
     // 检查数据库是否能够注册新账号
     if (is_username_exist(username) == false) {
-
         // 在数据库中新增一条目录，(uid, username, password)
         QUuid uuid = QUuid::createUuid();
         QString uuidString = uuid.toString();
@@ -151,8 +153,6 @@ void Widget::on_confirmButton_clicked() {
         query.addBindValue(username);
         query.addBindValue(calculateSHA256(password1));
         query.exec();
-
-        qDebug() << password1;
 
         // 弹出成功框，并返回登录页面
         QMessageBox msgBox;
@@ -164,7 +164,6 @@ void Widget::on_confirmButton_clicked() {
 
         ui->stackedWidget->setCurrentIndex(0);
     } else {
-
         // 弹出警告框，重新填写用户名和密码
         QMessageBox msgBox;
         msgBox.setWindowTitle("警告");
@@ -173,12 +172,14 @@ void Widget::on_confirmButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
 
+        // 清空已填信息
         ui->registerUsernameLineEdit->clear();
         ui->registerPasswordLineEdit->clear();
         ui->registerConfirmPasswordLineEdit->clear();
         return;
 
     }
+    // 清空已填信息
     ui->registerUsernameLineEdit->clear();
     ui->registerPasswordLineEdit->clear();
     ui->registerConfirmPasswordLineEdit->clear();
@@ -211,7 +212,6 @@ void Widget::on_subscribeButton_clicked() {
     QString username = ui->subscribeLineEdit->text();
 
     if (is_username_exist(username) == true) {
-
         // 加入关注列表
         QString uuid = get_uuid_by_username(username);
         qDebug() << "Global:" << global_user_uuid << "\n" << "uuid:" << uuid;
@@ -230,7 +230,6 @@ void Widget::on_subscribeButton_clicked() {
 
         ui->subscribeLineEdit->clear();
     } else {
-
         // 弹出警告框，重新填写用户名
         QMessageBox msgBox;
         msgBox.setWindowTitle("警告");
@@ -239,13 +238,13 @@ void Widget::on_subscribeButton_clicked() {
         msgBox.setButtonText(QMessageBox::Yes, "明白了");
         msgBox.exec();
 
+        // 清空已填信息
         ui->subscribeLineEdit->clear();
     }
 }
 
 
 void Widget::drawSubscriptionPage() {
-
     // 先清空原来的展示关注列表
     ui->listWidget->clear();
 
@@ -274,7 +273,9 @@ void Widget::drawPostPage() {
     ui->postWidget->clear();
     qDebug() << "Cleared.";
 
+    // 获取当前用户的关注的所有用户的动态组成的列表
     QList<PostElement> followingPostList = get_following_posts(global_user_uuid);
+    // 对每条动态，添加为组件中的一项
     for (const PostElement& item : followingPostList) {
         QListWidgetItem* listItem = new QListWidgetItem(ui->postWidget);
         CustomPostItemWidget* customWidget = new CustomPostItemWidget(item, this);
@@ -288,21 +289,17 @@ void Widget::drawPostPage() {
 
 
 void Widget::on_refreshButton_clicked() {
+    // 如果按下刷新按钮，则重新展示 post 列表
     drawPostPage();
 }
 
+
+// 以下为成员变量获取以及修改函数（getters & setters）
 Ui::Widget *Widget::get_ui() {
     return ui;
 }
 
+
 QString Widget::get_global_user_uuid() {
     return global_user_uuid;
-}
-
-QSqlDatabase Widget::get_db() {
-    return db;
-}
-
-void Widget::set_global_user_uuid(const QString& new_global_user_uuid) {
-    global_user_uuid = new_global_user_uuid;
 }

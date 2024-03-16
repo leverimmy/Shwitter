@@ -1,12 +1,10 @@
 #include "utils.h"
 
 bool is_valid_username(const QString& username) {
-
     // 检查字符串长度
     if (username.length() < 1 || username.length() > 20) {
         return false;
     }
-
     // 检查是否只包含字母、数字、下划线
     for (QChar ch : username) {
         if (!ch.isDigit() && !ch.isLower() && !ch.isUpper() && ch != '_') {
@@ -17,12 +15,10 @@ bool is_valid_username(const QString& username) {
 }
 
 bool is_valid_password(const QString& password) {
-
     // 检查字符串长度
     if (password.length() < 8 || password.length() > 20) {
         return false;
     }
-
     // 检查是否只包含字母、数字、下划线
     for (QChar ch : password) {
         if (!ch.isDigit() && !ch.isLower() && !ch.isUpper() && ch != '_') {
@@ -33,6 +29,7 @@ bool is_valid_password(const QString& password) {
 }
 
 QString get_uuid_by_username(const QString& username) {
+    // 通过 username 查找 uuid
     QSqlQuery query;
     query.prepare("SELECT uuid FROM users WHERE username = :username");
     query.bindValue(":username", username);
@@ -54,6 +51,7 @@ QString calculateSHA256(const QString &data) {
 }
 
 bool is_username_exist(const QString& username) {
+    // 判断某个用户名是否存在
     QSqlQuery query;
     query.prepare("SELECT * FROM users WHERE username = :username");
     query.bindValue(":username", username);
@@ -83,6 +81,7 @@ QStringList convertJsonDoqumentToQStringList(const QJsonDocument& jsonDocument) 
 }
 
 QString get_username_by_uuid(const QString& uuid) {
+    // 通过 uuid 查找 username
     QSqlQuery query;
     query.prepare("SELECT username FROM users WHERE uuid = :uuid");
     query.bindValue(":uuid", uuid);

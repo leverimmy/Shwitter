@@ -28,6 +28,7 @@ CustomPostItemWidget::CustomPostItemWidget(const PostElement& post, Widget *pare
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 }
 
+
 void CustomPostItemWidget::handleButtonClicked() {
     QMessageBox msgBox;
     msgBox.setWindowTitle("警告");

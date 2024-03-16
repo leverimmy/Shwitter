@@ -21,8 +21,6 @@ public:
     void drawPostPage();
     Ui::Widget *get_ui();
     QString get_global_user_uuid();
-    QSqlDatabase get_db();
-    void set_global_user_uuid(const QString& new_global_user_uuid);
 
 private slots:
     void on_registerButton_clicked();
