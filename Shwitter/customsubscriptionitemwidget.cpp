@@ -6,7 +6,7 @@ CustomSubscriptionItemWidget::CustomSubscriptionItemWidget(const QString& text, 
     : m_parent(parent) {
     layout = new QHBoxLayout(this);
     label = new QLabel(text, this);
-    button = new QPushButton("删除", this);
+    button = new QPushButton("取消关注", this);
 
     layout->addWidget(label);
     layout->addWidget(button);
@@ -23,7 +23,7 @@ CustomSubscriptionItemWidget::CustomSubscriptionItemWidget(const QString& text, 
 void CustomSubscriptionItemWidget::handleButtonClicked() {
     QMessageBox msgBox;
     msgBox.setWindowTitle("警告");
-    msgBox.setText(QString("取消关注 %1？").arg(this->label->text()));
+    msgBox.setText(QString("确定要取消关注 %1？").arg(this->label->text()));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     int result = msgBox.exec();
     if (result == QMessageBox::Yes) {
