@@ -1,5 +1,37 @@
 #include "utils.h"
 
+bool is_valid_username(const QString& username) {
+
+    // 检查字符串长度
+    if (username.length() < 1 || username.length() > 20) {
+        return false;
+    }
+
+    // 检查是否只包含字母、数字、下划线
+    for (QChar ch : username) {
+        if (!ch.isDigit() && !ch.isLower() && !ch.isUpper() && ch != '_') {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool is_valid_password(const QString& password) {
+
+    // 检查字符串长度
+    if (password.length() < 8 || password.length() > 20) {
+        return false;
+    }
+
+    // 检查是否只包含字母、数字、下划线
+    for (QChar ch : password) {
+        if (!ch.isDigit() && !ch.isLower() && !ch.isUpper() && ch != '_') {
+            return false;
+        }
+    }
+    return true;
+}
+
 QString get_uuid_by_username(const QString& username) {
     QSqlQuery query;
     query.prepare("SELECT uuid FROM users WHERE username = :username");

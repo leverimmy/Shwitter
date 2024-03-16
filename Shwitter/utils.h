@@ -4,6 +4,10 @@
 #include <QString>
 #include <QtSql>
 
+bool is_valid_username(const QString& username);
+
+bool is_valid_password(const QString& password);
+
 QString get_uuid_by_username(const QString& username);
 
 QString calculateSHA256(const QString &data);

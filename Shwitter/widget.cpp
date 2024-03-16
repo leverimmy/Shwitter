@@ -6,7 +6,6 @@
 #include "ui_widget.h"
 
 #include "login.h"
-#include "register.h"
 #include "utils.h"
 #include "subscription.h"
 
