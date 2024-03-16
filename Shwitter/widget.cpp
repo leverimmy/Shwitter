@@ -62,6 +62,8 @@ void Widget::on_loginButton_clicked() {
     QString username = ui->loginUsernameLineEdit->text();
     QString password = ui->loginPasswordLineEdit->text();
 
+    qDebug() << password;
+
     // 检查登录是否成功
     if (is_valid_username_and_password(username, password) == true) {
         // 如果登录成功，记录下当前用户 uuid，并且转到主页面
@@ -149,6 +151,8 @@ void Widget::on_confirmButton_clicked() {
         query.addBindValue(username);
         query.addBindValue(calculateSHA256(password1));
         query.exec();
+
+        qDebug() << password1;
 
         // 弹出成功框，并返回登录页面
         QMessageBox msgBox;
