@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS users (uuid UUID PRIMARY KEY, username VARCHAR(20), p
 
 #### 关注列表
 
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS subscription (uuid UUID PRIMARY KEY, uuid_list JSONB)
 ```
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS subscription (uuid UUID PRIMARY KEY, uuid_list JSONB)
 
 #### 发布内容
 
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME, poster_uuid UUID, post_content TEXT)
 ```
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 ```
 - Shwitter
 	- Header Files
-		- customlistitemwidget.h
+		- customsubscriptionitemwidget.h
 		- custompostitemwidget.h
 		- login.h
 		- post.h
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 		- utils.h
 		- widget.h
 	- Source Files
-		- customlistitemwidget.cpp
+		- customsubscriptionitemwidget.cpp
 		- custompostitemwidget.cpp
 		- login.cpp
 		- main.cpp
@@ -113,24 +113,64 @@ CREATE TABLE IF NOT EXISTS posts (post_uuid UUID PRIMARY KEY, timestamp DATETIME
 
 - 类
 
-  - `customlistitemwidget.h` 和 `customlistitemwidget.cpp`
+  - `customsubscriptionitemwidget.h` 和 `customsubscriptionitemwidget.cpp`
 
-    
+    定义了 `CustomSubscriptionItemWidget` 类。该类定义了展示当前用户的关注列表时，关注列表的组件布局。
 
   - `custompostitemwidget.h` 和 `custompostitemwidget.cpp`
 
+    定义了 `CostomPostItemWidget` 类。该类定义了展示当前用户关注的所有用户的所有动态时，展示动态的列表的组件布局。
+
   - `postelement.h` 和 `postelement.cpp`
+
+    定义了 `PostElement` 类。该类定义了用户发表的动态的结构。具体而言，一个动态由以下部分组成：
+
+    - 该动态的唯一标识符
+    - 该动态的发表时间，以时间戳表示
+    - 该动态的发表者
+    - 该动态的内容
 
   - `postwindow.h` 和 `postwindow.cpp`
 
+    定义了 `PostWindow` 类。该类定义了在用户发表新动态时，弹出输入发表内容的窗口，该窗口的布局。
+
   - `widget.h` 和 `widget.cpp`
+
+    定义了 `Widget` 类。该类定义了整个应用程序窗口的布局。
 
 - 函数库
 
   - `login.h` 和 `login.cpp`
+
+    负责与数据库交互，管理用户登录注册相关操作。例如：
+
+    - 判断用户名和密码是否正确
+
   - `post.h` 和 `post.cpp`
+
+    负责与数据库交互，管理用户动态相关操作。例如：
+
+    - 插入/删除某一条用户动态
+    - 获取当前用户关注的所有用户的所有动态
+
   - `subscription.h` 和 `subscription.cpp`
+
+    负责与数据库交互，管理用户关注其他用户相关操作。例如：
+
+    - 新增/删除关注某个用户
+    - 获取当前用户关注的所有用户组成的列表
+
   - `utils.h` 和 `utils.cpp`
+
+    辅助函数库，它负责定义一些常用的、能使代码组织结构更清晰的功能函数。例如：
+
+    - 判断用户名是否合法
+    - 判断密码是否合法
+    - 计算一个字符串的 SHA256 值
+    - 将 `QStringList` 转换为 `QJsonDocument`
+    - 将 `QJsonDocument` 转换为 `QStringList`
+    - 判断一个用户名是否存在
+    - 由用户唯一标识符得到用户名
 
 - `main.cpp`
 

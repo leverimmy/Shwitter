@@ -1,8 +1,8 @@
-#include "customlistitemwidget.h"
+#include "customsubscriptionitemwidget.h"
 #include "utils.h"
 #include "subscription.h"
 
-CustomListItemWidget::CustomListItemWidget(const QString& text, Widget* parent)
+CustomSubscriptionItemWidget::CustomSubscriptionItemWidget(const QString& text, Widget* parent)
     : m_parent(parent) {
     layout = new QHBoxLayout(this);
     label = new QLabel(text, this);
@@ -13,14 +13,14 @@ CustomListItemWidget::CustomListItemWidget(const QString& text, Widget* parent)
     layout->setSpacing(0); // 删除两行之间的空白
 
     setLayout(layout);
-
-    connect(button, &QPushButton::clicked, this, &CustomListItemWidget::handleButtonClicked);
+    
+    connect(button, &QPushButton::clicked, this, &CustomSubscriptionItemWidget::handleButtonClicked);
 
     button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 }
 
-void CustomListItemWidget::handleButtonClicked() {
+void CustomSubscriptionItemWidget::handleButtonClicked() {
     QMessageBox msgBox;
     msgBox.setWindowTitle("警告");
     msgBox.setText(QString("取消关注 %1？").arg(this->label->text()));

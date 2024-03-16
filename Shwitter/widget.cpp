@@ -1,5 +1,5 @@
 #include "widget.h"
-#include "customlistitemwidget.h"
+#include "customsubscriptionitemwidget.h"
 #include "custompostitemwidget.h"
 #include "postelement.h"
 #include "postwindow.h"
@@ -249,7 +249,7 @@ void Widget::drawSubscriptionPage() {
     QStringList followingUUIDList = get_following_uuid(global_user_uuid);
     for (const QString& item : followingUUIDList) {
         QListWidgetItem* listItem = new QListWidgetItem(ui->listWidget);
-        CustomListItemWidget* customWidget = new CustomListItemWidget(get_username_by_uuid(item), this);
+        CustomSubscriptionItemWidget* customWidget = new CustomSubscriptionItemWidget(get_username_by_uuid(item), this);
         listItem->setSizeHint(customWidget->sizeHint());
         ui->listWidget->setItemWidget(listItem, customWidget);
     }
